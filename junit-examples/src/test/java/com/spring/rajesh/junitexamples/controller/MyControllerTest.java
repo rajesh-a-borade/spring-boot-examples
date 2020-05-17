@@ -1,5 +1,9 @@
-package com.spring.rajesh.junitexamples;
+package com.spring.rajesh.junitexamples.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,10 +12,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-
-import org.junit.jupiter.api.BeforeEach;
+import com.spring.rajesh.junitexamples.domain.EmployeeView;
+import com.spring.rajesh.junitexamples.service.MyService;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class MyControllerTest {
@@ -21,7 +23,7 @@ public class MyControllerTest {
 	
 	@BeforeEach
 	private void beforeAll() {
-		when(myMockService.findAccountById(1)).thenReturn(new Account(1, "XYZ", 100));
+		when(myMockService.findEmployeeViewById(1)).thenReturn(new EmployeeView(1, "XYZ"));
 	}
 	
 	
@@ -34,10 +36,9 @@ public class MyControllerTest {
     @Test
     public void testController() throws Exception {
 
-        Account responseAccount = restTemplate.getForObject(
-        		"http://localhost:" + port + "/account/1", Account.class);
-        Account expectedAccount = new Account(1, "XYZ", 100);
-        assertEquals(expectedAccount, responseAccount);
-        System.out.println("*** TEST - MyControllerTest passed");
+    	EmployeeView responseEmployeeView = restTemplate.getForObject(
+        		"http://localhost:" + port + "/account/1", EmployeeView.class);
+    	EmployeeView expectedEmployeeView = new EmployeeView(1, "XYZ");
+        assertEquals(expectedEmployeeView, responseEmployeeView);
     }
 }

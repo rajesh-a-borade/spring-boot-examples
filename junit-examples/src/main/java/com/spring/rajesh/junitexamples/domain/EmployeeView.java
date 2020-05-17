@@ -1,61 +1,51 @@
-package com.spring.rajesh.junitexamples;
+package com.spring.rajesh.junitexamples.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+public class EmployeeView {
 
-@Entity
-public class Account {
-
-	@Id
-	@GeneratedValue
 	private int id;
 	private String name;
-	private int balance;
-	
-	public Account() {
+
+	public EmployeeView() {
 	}
 	
-	public Account(int id, String name, int balance) {
+	public EmployeeView(int id, String name) {
 		this.id = id;
 		this.name = name;
-		this.balance = balance;
 	}
+
+
 
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public int getBalance() {
-		return balance;
-	}
-	
-	public void setBalance(int balance) {
-		this.balance = balance;
-	}
-	
+
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", name=" + name + ", balance=" + balance + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("EmployeeView [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append("]");
+		return builder.toString();
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + balance;
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -69,9 +59,7 @@ public class Account {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Account other = (Account) obj;
-		if (balance != other.balance)
-			return false;
+		EmployeeView other = (EmployeeView) obj;
 		if (id != other.id)
 			return false;
 		if (name == null) {
@@ -81,6 +69,6 @@ public class Account {
 			return false;
 		return true;
 	}
-	
+
 	
 }
