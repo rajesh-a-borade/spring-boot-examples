@@ -14,9 +14,13 @@ import com.spring.rajesh.junitexamples.service.MyService;
 @RequestMapping("/account")
 public class MyController {
 
-	@Autowired
 	private MyService myService;
-	
+
+	@Autowired
+	public MyController(MyService myService) {
+		this.myService = myService;
+	}
+
 	@GetMapping("/{id}")
 	public @ResponseBody EmployeeView get(@PathVariable int id) {
 		return myService.findEmployeeViewById(id);
